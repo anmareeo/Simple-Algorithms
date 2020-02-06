@@ -7,8 +7,8 @@ function badOrGoodMovie(movieRating) {
             return ('Bad Movie')
     } else { return ('Invalid Rating')}
 }
-console.log(badOrGoodMovie(4))
-console.log(badOrGoodMovie(6.5))
+console.log(badOrGoodMovie(9))
+console.log(badOrGoodMovie(8))
 console.log(badOrGoodMovie(68))
 // Bad Movie
 // Good Movie
@@ -28,7 +28,7 @@ console.log(Movie(3))
 //Bad Movie
 
 // Check if a string is empty
-
+/*
 function isEmptyString(aString){
     if (aString == '') { return ('True')
 } else {return ('False')}
@@ -54,7 +54,7 @@ function findMin(numbers){
     console.log(findMin([5,8,9,8,7,3]))
 */
 
-
+/*
 function findMin(numbers){
     let minimum = numbers[0]
     for(i=0; i<numbers.length; i++){
@@ -72,4 +72,22 @@ console.log (findMin([7,8,9,2,5,4]))
 //3
 //2
 
-//the two arrays above are the same(now). I rewrote the function because I could not figure out why it was not working. The console was displaying the first number in the array instead of the smallest. The second version worked without problem. As i reviewed the code, I noticed that I had the return statement between the wrong brackets. That is something I need to watch for in for loops.
+//the two arrays above are the same(now). I rewrote the function because I could not figure out why it was not working. The console was displaying the first number in the array instead of the smallest. The second version worked without problem. As i reviewed the code, I noticed that I had the return statement between the wrong brackets. That is something I need to watch for in for loops.*/
+
+//if statements only run if something is true. What is happening in the loop, for the first one below, is it's checking the first number in the array, which is 3, so that is the max, then it loops through again to seven and determines that 7 is greater than 3, so that is the new maximum, then it loops back through and checks to see if 7 is greater than 9. It is not, so 9 becomes the new max. It loops through again and determines that 0 is not greater than 9, so 9 remains the max, etc.
+function findMax(numbers){
+    let maximum = numbers[0]
+    for(let i=0; i<numbers.length; i++){
+        if (numbers[i] > maximum) {
+            maximum = numbers[i]
+        }
+    } 
+    return maximum
+}
+console.log(findMax([3,7,9,0,1,2]))
+console.log(findMax([6,7,9,5,10,2]))
+console.log(findMax([3,7,8,0,1,2]))
+//console showed
+// 9
+// 10
+// 8
