@@ -1,3 +1,4 @@
+//Instructions for finding the minimum number in an array:
 //We will expect the following (for example) from the function findMin below:
 //findMin([5,3,9,2,6,4]) should return 2, findMin([5,0,9,2,6,4]) should return 0, etc.
 
@@ -15,7 +16,10 @@ console.log (findMin([5,3,9,2,6,4])) //showed 2
 console.log (findMin([5,0,9,2,6,4])) //showed 0
 console.log (findMin([5,8,9,7,6,4])) //showed 4
 
-/* Here is the logic behind this algorithm: 
+//========================================================
+
+/* Explanation:
+Here is the logic behind this algorithm: 
 1. We have to label the minimum. We pick some kind of minimum, which is usually just the first number in the array
 2. Loop through the array and check to see if the current item is less that the current minimum.
 3. If true, replace the current min with the current item.
@@ -39,3 +43,44 @@ console.log (findMin([5,3,9,2,6,4])) //showed 2
 console.log (findMin([5,0,9,2,6,4])) //showed 0
 console.log (findMin([5,8,9,7,6,4])) //showed 4
 */
+
+
+//**************************************************************************
+//Instructions for finding the maximum number in an array:
+//We will expect the following (for example) from the function findMax below:
+//findMax([5,3,9,2,6,4]) should return 9, findMax([5,0,8,2,6,4]) should return 8, etc.
+//note that the instructions are the same for findMax. We just switch the names and switch the sign from "<" to ">"
+function findMax(numbers){
+
+    let maximum = numbers[0]     
+    for(let i=0; i<numbers.length; i++) {
+        if (numbers[i]> maximum) {//this is the "if" condition
+            maximum = numbers[i] //this is the "if" statement REMEMBER:  IF STATEMENTS ONLY RUN IF THE CONDITION IS TRUE.
+        }
+    }
+    return maximum
+}
+console.log (findMax([5,3,1,2,6,4])) //showed 6
+console.log (findMax([5,0,13,2,6,4])) //showed 13
+console.log (findMax([5,1,3,7,6,2])) //showed 7 
+
+/* See below to see how the algorithm works.
+
+For the array of //[5, 0, 9, 2, 6, 4]
+
+5 is the first number in the array so it is automatically the maximum in this algorithm
+
+
+Maximum = 5, and below is the loop
+-numbers//[0] ==> 5 > 5? = False, so the maximum is still 5
+-numbers//[1] ==> 0 > 5? = False, so the maximum is still 5
+-numbers//[2] ==> 9 > 5? = True, so the maximum is now 9 (the "if" statement runs)*
+-numbers//[3] ==> 2 > 9? = False, so the maximum is still 9
+-numbers//[4] ==> 6 > 9? = False, so the maximum is still 9
+-numbers//[5] ==> 4 > 9? = False, so the maximum is still 9
+
+That is the end of the array, so the final maximum is 9. 
+
+* the "if" statement as shown above on line 58 is "maximum = numbers[i]"
+Look at the if condition on line 57. That is essentially the question we are asking on lines 75-80. 
+The algorithm will go through and ask is numbers//[0](the number located at the 0 index) greater than the maximum number? The number at index 0 is 5 and the maximum number is 5, so it will ask is 5 greater than 5? (is 5>5?). The answer to that is false, so 5 remains the maximum. It keeps looping through and will not run the if statement until the if condition is true.  */
