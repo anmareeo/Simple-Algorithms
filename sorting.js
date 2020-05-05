@@ -23,19 +23,84 @@ So the recipe is:
 
 
 */
-
+//================================================================================================================
+/*
 function sortBestRatingsFirst(numbers){
 //sortBestRatingsFirst([5, 8, 2, 9, 3, 10])
 //know max AND its index the findMax function we used before, we can use again, but that will only help us find the max. For sorting, we need to also know its location, because we will need to swap places. So we will create another variable called maxLocation to store that location. So as soon as it finishes the if statement (remember the statement only runs if the condition is true), then it will run a second "if" statement of maxLocation = i.  
 let maxNum = numbers[0]
-let maxLocation;     
+let maxLocation;  
+//note that this for loop is just an inner loop and it will only run once. We have hard-coded zero. We want to create a new variable that will allow the loop to iterate again and again.Below we will create an outer loop.    
     for(let i=0; i<numbers.length; i++) {
         if (numbers[i]> maxNum) {
+            //know max and its location
             maxNum = numbers[i] 
             maxLocation = i
         }
     }
-    return [maxNum, maxLocation]
+  // return [maxNum, maxLocation]
+  //swap the first and the last
+  numbers[maxLocation] = numbers[0]
+  numbers[0] = maxNum
+
+  return numbers
 
 }
 console.log (sortBestRatingsFirst([5, 8, 2, 9, 3, 10]))
+
+function sortBestRatingsFirst(numbers){
+    //sortBestRatingsFirst([5, 8, 2, 9, 3, 10])
+    //know max AND its index the findMax function we used before, we can use again, but that will only help us find the max. For sorting, we need to also know its location, because we will need to swap places. So we will create another variable called maxLocation to store that location. So as soon as it finishes the if statement (remember the statement only runs if the condition is true), then it will run a second "if" statement of maxLocation = i.  
+    let maxNum = numbers[0]
+    let maxLocation;  
+    //note that this for loop is just an inner loop and it will only run once. We have hard-coded zero. We want to create a new variable that will allow the loop to iterate again and again.Below we will create an outer loop.    
+        for(let i=0; i<numbers.length; i++) {
+            if (numbers[i]> maxNum) {
+                //know max and its location
+                maxNum = numbers[i] 
+                maxLocation = i
+            }
+        }
+      // return [maxNum, maxLocation]
+      //swap the first and the last
+      numbers[maxLocation] = numbers[0]
+      numbers[0] = maxNum
+    
+      return numbers
+    
+    }
+    console.log (sortBestRatingsFirst([5, 8, 2, 9, 3, 10]))
+    
+    
+
+
+
+*/
+//below we will add an outer loop using the variable j to the inner loop(the for loop using "i"). j becomes the main iterator and it helps us do the swapping. We will change the zeros to j. And we also want the inner loop to always begin where j is currently at in the loop, so we make i (the iterator for the inner loop) equal to j.
+function sortBestRatingsFirst(numbers){
+   //find max
+   for (let j=0; j < numbers.length -1; j++) {
+        maxNum = numbers[j];
+        maxLocation= j; 
+    
+        for(let i=j; i<numbers.length; i++) { 
+            if (numbers[i]> maxNum) {
+                //know max and its location (index location)
+                maxNum = numbers[i] 
+                maxLocation = i
+            }
+        }
+  
+        //swap the first and the last
+        numbers[maxLocation] = numbers[j]//==> 10
+        numbers[j] = maxNum
+    }
+    return numbers
+
+}
+console.log (sortBestRatingsFirst([5, 8, 2, 9, 3, 10]))
+console.log (sortBestRatingsFirst([ 10, 9, 8, 5, 3, 2 ]))
+
+
+    
+   
