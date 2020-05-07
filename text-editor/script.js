@@ -77,3 +77,10 @@ function alignText(elem, alignType){
   elem.add.classList.add("active)")//this shows the alignment that is active
   }
   
+/**
+ * One problem with the text editor is that the verion in the format part is always one keystroke behind. Here is why:
+ * 
+ *  When we are listening on a keyboard event, there are three funtions that happen/events that fire--1. onKeyDown() 2. onKeyPress() 3. onKeyUp(). This last one is where the finger comes off the key. Those three functions happen very quickly, but the order is still important. The value gets saved on the input at step 3-- onKeyUp(), but the first function onKeyDown() fired too soon. 
+ *
+ * In our code, we only have onKeyDown(); the others just happen automatically. We can change the code to say onKeyUp() because that is where the data is saved to the input. That works well unless you want to copy and paste something. It won't work if it is done with a mouse because no keys are pressed. The solution is to change onKeyDown to oninput. I have done that. I believe the oninput handler is an upgrade and that the others will soon just not be used.
+ */
