@@ -170,6 +170,7 @@ console.log(fruit2)
 */
 /*
 Object-Oriented Programming (OOP)
+
 -a method of programming...it has nothing to do with the programming language
 -organizing software around data and objects
 -combining related attributes and functions into container objects
@@ -196,7 +197,7 @@ The object is a user
 key(firstName): John(value)
 each key value pair must be separated by a comma
 */
-
+/*
 let user = {
     firstName: "Anmaree",
     lastName: "Osmond",
@@ -276,7 +277,7 @@ if("randomAttr" in user) {
 for(let prop of user) {
     console.log(prop)
 }
-*/
+
 //the for loop above gives the error "user is not iterable" the keyword "in" needs to be used when trying to access data within this object. 
 for(let prop in user) {
     console.log(prop)
@@ -288,6 +289,8 @@ setPassword
 user Hobbies
 getFullName
 */
+
+/*
 //the for in loop above loops through the keys of the object, but it only shows the keys, not the corresponding values. To dig deeper into the object, we can use bracket notation. Dot notation will not work because the object contains a list(user Hobbies). If the hobbies were in the form of key value pairs such as: 
 // firstHobby: "drumming"
 // secondHobby: "decorating"
@@ -297,6 +300,7 @@ getFullName
 for(let prop in user) {
     console.log(user.prop)
 }
+*/
 /*
 console shows:
 undefined
@@ -305,7 +309,7 @@ undefined
 undefined
 undefined 
 */
-
+/*
 for(let prop in user) {
     console.log(user[prop])
 }
@@ -315,7 +319,150 @@ Osmond
 [Function: setPassword]
 [ 'drumming', 'decorating', 'eating' ]
 [Function: getFullName]
+=============================================================
 */
 
+/* 
+Everything is an object! Almost. Simple strings are just that--a string with no functionality(a primitive). Just a string (whatever is in quotes), but through what is called coercion, if we add a piece of functionality to the end, such as .length, that string is immediately transformed into an object. suddenly it has functionality. So it's just a string until we need it to have functionality. It's another thing to study up on. I believe this is unique to javascript. Keeping it in string form saves space
+=====================================================================
+*/
+/*
+CLASSES
+-a template for creating objects, providing initial values, and implementing methods
+-encourages reusability
+Example:
+for example below X stands for an attribute and f(x) stands for a method/function
+
+Class Car
+X: make
+f(x): drive(hp) -- in the parenthesis is a property of horsepower
+f(x): unlock()
+
+The above class is a template, and below is an object created with that template
+
+Object Audi(Car)
+X: make = Audi
+f(x): drive(500) -- in the parentheses is the horsepower of the Audi
+f(x): unlock()
+
+So from the Class of Car, many objects (cars) can easily be created.
+
+within a class is something called a constructor method. A constructor method initializes the values. The constructor method is the first thing that gets called the second you create an object using the class. It's the first thing that gets called automatically. 
+Below is how it works. 
 
 
+*/
+/*
+class User{
+    constructor(firstName, lastName, userHobbies) {//in the parentheses we are passing in values(keys that represent values) or parameters
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userHobbies = userHobbies
+    }
+}
+
+//Now from the User class (template) that was created above, we will create a new object below.
+
+let Anmaree = new User("Anmaree", "Osmond", ["drumming", "drawing"])
+console.log(Anmaree)
+
+/* dev console shows:
+User {firstName: "Anmaree", lastName: "Osmond", userHobbies: Array(2)}
+firstName: "Anmaree"
+lastName: "Osmond"
+userHobbies: Array(2)
+0: "drumming"
+1: "drawing"
+length: 2
+__proto__: Array(0)
+__proto__: Object
+
+*/
+//now to add some functionality 
+class User{
+    constructor(firstName, lastName, userHobbies) {//in the parentheses we are passing in values(keys that represent values) or parameters
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userHobbies = userHobbies
+    }
+    getFullName= () => {
+        return `${this.firstName} ${this.lastName}`
+
+    }
+}
+
+let Anmaree = new User("Anmaree", "Osmond", ["drumming", "drawing"])
+console.log(Anmaree)//see above for console info
+console.log(Anmaree.getFullName()) //shows Anmaree Osmond in the console
+//now below we will add another user based on the User class
+
+let Zak = new User("Zak", "Gregory", ["motocross", "singing"])
+console.log(Zak)
+/* console shows
+User {firstName: "Zak", lastName: "Gregory", userHobbies: Array(2), getFullName: ƒ}
+firstName: "Zak"
+getFullName: () => {…}
+lastName: "Gregory"
+userHobbies: Array(2)
+0: "motocross"
+1: "singing"
+length: 2
+__proto__: Array(0)
+__proto__: Object
+*/
+//=======================================================
+
+
+/* CLASS INHERITANCE
+
+Class Inheritance allows us to extend data and methods from another class. So with our car example, if we have a truck that has all of the attributes and methods of a car, but it has some in addition to those, we can create a new class with just those unique properties. That way we don't have to create an entirely new template just to add a few more items.
+
+Below is the Car Class
+Class Car
+X: make
+f(x): drive(hp) 
+f(x): unlock()
+
+Here is a new class
+Class Pickup extends Car
+X: towCapacity
+f(x): towMode()
+
+Essentially what we are saying is that we want everything in the car class, and on top of that, we want to add data and methods that a truck might have
+
+So what we see when we try to create an object is the stuff that is in both classes:
+
+Object Ford(Pickup)
+X: make = Ford
+X: towCapacity = 1k
+f(x): towMode()
+f(x): drive(500) 
+f(x): unlock()
+
+
+Keeping this in mind, we will go back to our class User example. We will create an admin user that has all the data a user has, but it has some additional info.
+
+*/
+
+class AdminUser extends User {
+    setPassword = (password) => {
+        this.password = password
+    }
+}
+
+let Jason = new AdminUser("Jason", "Jones", ["dancing", "dining"])
+console.log(Jason)
+
+/* dev console shows:
+AdminUser {firstName: "Jason", lastName: "Jones", userHobbies: Array(2), getFullName: ƒ, setPassword: ƒ}
+firstName: "Jason"
+getFullName: () => {…}
+lastName: "Jones"
+setPassword: (password) => { this.password = password }
+userHobbies: (2) ["dancing", "dining"]
+__proto__: User
+constructor: class AdminUser
+__proto__: Object
+
+so notice that the setPassword Function is included along with the rest of the info.
+*/
